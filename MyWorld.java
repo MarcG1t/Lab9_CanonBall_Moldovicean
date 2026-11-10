@@ -10,13 +10,14 @@ public class MyWorld extends World
 {
     private long lastFrameTimeMS;
     private double timeStepDuration;
-    
+
     public MyWorld()
     {    
         super(768, 576, 1, false);
-        
+
         lastFrameTimeMS = System.currentTimeMillis();
         timeStepDuration = 1.0 / 60; // seems to be the default
+        prepare();
     }
 
     public void started()
@@ -29,10 +30,31 @@ public class MyWorld extends World
         timeStepDuration = (System.currentTimeMillis() - lastFrameTimeMS) / 1000.0;
         lastFrameTimeMS = System.currentTimeMillis();
     }
-    
+
     public double getTimeStepDuration()
     {
         return timeStepDuration;
     }
-    
+
+    /**
+     * Prepare the world for the start of the program.
+     * That is: create the initial objects and add them to the world.
+     */
+    private void prepare()
+    {
+        Cannon cannon = new Cannon();
+        addObject(cannon,115,397);
+        Target target = new Target();
+        addObject(target,408,213);
+        Target target2 = new Target();
+        addObject(target2,488,295);
+        Target target3 = new Target();
+        addObject(target3,535,427);
+        Target target4 = new Target();
+        addObject(target4,636,504);
+        target.setLocation(369,111);
+        target2.setLocation(434,224);
+        target3.setLocation(499,328);
+        target4.setLocation(523,460);
+    }
 }
